@@ -1,3 +1,208 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+  background-color: #59749a;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins/Poppins-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+/* Roboto Font */
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Nunito Font */
+@font-face {
+  font-family: "Nunito";
+  src: url("./fonts/Nunito/Nunito-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./fonts/Nunito/Nunito-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./fonts/Nunito/Nunito-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./fonts/Nunito/Nunito-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Heebo";
+  src: url("./fonts/Heebo/Heebo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Heebo";
+  src: url("./fonts/Heebo/Heebo-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Heebo";
+  src: url("./fonts/Heebo/Heebo-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+/* Font Utilities */
+@layer utilities {
+  /* Poppins */
+  .font-poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+  }
+
+  .font-poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+  }
+
+  .font-poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
+
+  .font-poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+  }
+
+  .font-poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+  }
+
+  /* Roboto */
+  .font-roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+
+  .font-roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+
+  .font-roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+  }
+
+  /* Nunito */
+  .font-nunito-regular {
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+  }
+
+  .font-nunito-semibold {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+  }
+
+  .font-nunito-bold {
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+  }
+
+  .font-nunito-extrabold {
+    font-family: "Nunito", sans-serif;
+    font-weight: 800;
+  }
+  /* heebo */
+  .font-heebo-regular {
+    font-family: "Heebo", sans-serif;
+    font-weight: 400;
+  }
+
+  .font-heebo-medium {
+    font-family: "Heebo", sans-serif;
+    font-weight: 500;
+  }
+
+  .font-heebo-bold {
+    font-family: "Heebo", sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .main-loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #f03355 95%, #0000) 50% 1px/12px
+        12px no-repeat,
+      radial-gradient(farthest-side, #0000 calc(100% - 14px), #ccc 0);
+    animation: spin 2s infinite linear;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
