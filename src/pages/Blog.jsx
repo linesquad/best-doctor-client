@@ -1,9 +1,13 @@
-
+import BlogArticle from "../components/blog/BlogCards/BlogArticle";
+import BlogHero from "../components/blog/hero/BlogHero";
 
 function Blog() {
   return (
-    <div>Blog</div>
-  )
+    <div>
+      <BlogHero />
+      <BlogArticle />
+    </div>
+  );
 }
 
-export default Blog
+export default Blog;
