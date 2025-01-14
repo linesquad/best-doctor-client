@@ -3,7 +3,7 @@ function HeroContent({ mainHeading, subHeading }) {
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <h1
-        className="font-poppinsBold leading-[40px] z-10  text-[32px] lg:text-[80px]  lg:leading-[110px] capitalize
+        className="font-poppinsBold leading-[40px] z-[1]  text-[32px] lg:text-[80px]  lg:leading-[110px] capitalize
   text-transparent bg-gradient-to-b from-[#07D] to-[#004077] bg-clip-text"
       >
         {mainHeading}

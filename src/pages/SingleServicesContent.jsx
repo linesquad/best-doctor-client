@@ -9,7 +9,6 @@ function SingleServicesContent() {
   if (isError) return <p>Error: {error.message}</p>;
 
   const serviceData = data.service;
-  console.log(serviceData);
 
   const contentParts = serviceData.content
     ? serviceData.content.includes("/")

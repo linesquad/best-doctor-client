@@ -2,7 +2,7 @@ import Navbar from "./Navbar/NavBar";
 import { navLinks } from "../../lib/navLinks";
 function Header() {
   return (
-    <header>
+    <header className="sticky top-0 z-50">
       <Navbar
         links={navLinks}
         bgColor="bg-darkBlue"

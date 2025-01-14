@@ -10,7 +10,6 @@ function BlogList({ dataList }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = parseInt(searchParams.get("page")) || 1;
-
   const {
     data: doctor_blog,
     error,
@@ -25,17 +24,20 @@ function BlogList({ dataList }) {
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setSearchParams({ page: currentPage + 1 });
+      window.scrollTo({ top: 0, behavior: "smooth" }); 
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setSearchParams({ page: currentPage - 1 });
+      window.scrollTo({ top: 0, behavior: "smooth" }); 
     }
   };
 
   const handlePageChange = (page) => {
     setSearchParams({ page });
+    window.scrollTo({ top: 0, behavior: "smooth" }); 
   };
 
   if (isLoading) return <div>Loading...</div>;

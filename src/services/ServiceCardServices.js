@@ -10,6 +10,5 @@ export const getServicesById = async (id) => {
     .select("*")
     .eq("id", id)
     .single();
-  console.log(data);
   return { service: data, error };
 };

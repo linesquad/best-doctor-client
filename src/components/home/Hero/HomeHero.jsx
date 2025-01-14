@@ -24,7 +24,6 @@ function HomeHero() {
       {heroImage.map((images) => (
         <div
           key={images.id}
-          onClick={() => setSelectedId(images.id)}
           style={{
             backgroundImage: `url(${images.top_pic})`,
           }}
