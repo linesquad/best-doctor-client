@@ -1,6 +1,15 @@
-function CarouselContent({ img, reading, title, content }) {
+import { useNavigate } from "react-router-dom";
+
+function CarouselContent({ img, reading, title, content, id }) {
+  const navigate = useNavigate();
+  function navigateHandler() {
+    navigate(`/blog/${id}`);
+  }
   return (
-    <div className="border rounded-md border-[#0000001F] p-3">
+    <div
+      className="border rounded-md border-[#0000001F] p-3 cursor-pointer"
+      onClick={navigateHandler}
+    >
       <img
         src={img}
         alt="image"

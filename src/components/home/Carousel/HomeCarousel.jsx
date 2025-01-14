@@ -52,6 +52,7 @@ function HomeCarousel() {
           : data.map((item) => (
               <SwiperSlide key={item.id}>
                 <CarouselContent
+                  id={item.id}
                   img={item.picture}
                   reading={item.time}
                   title={item.title}

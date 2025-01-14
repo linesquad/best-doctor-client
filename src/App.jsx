@@ -6,14 +6,10 @@ import {
 } from "react-router-dom";
 
 import AboutMe from "./pages/AboutMe";
-import Awards from "./pages/Awards";
 import Blog from "./pages/Blog";
-import Education from "./pages/Education";
-import Experience from "./pages/Experience";
 import Home from "./pages/Home";
 import SingleBlogContent from "./pages/SingleBlogContent";
 import SingleServicesContent from "./pages/SingleServicesContent";
-import Skills from "./pages/Skills";
 import MainLayout from "./components/MainLayout";
 
 const routes = [
@@ -30,10 +26,6 @@ const routes = [
       { path: "blog", element: <Blog /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
-      { path: "education", element: <Education /> },
-      { path: "experience", element: <Experience /> },
-      { path: "skills", element: <Skills /> },
-      { path: "awards", element: <Awards /> },
     ],
   },
 ];
