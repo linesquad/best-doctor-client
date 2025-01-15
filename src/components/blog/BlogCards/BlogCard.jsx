@@ -5,6 +5,7 @@ function BlogCard({ data }) {
 
   const handleCardClick = () => {
     navigate(`/blog/${data.id}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
