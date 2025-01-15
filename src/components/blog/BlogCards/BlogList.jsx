@@ -1,5 +1,5 @@
-import { useSearchParams } from "react-router-dom";
-
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 import BlogCard from "./BlogCard";
 import BlogListPagination from "./BlogListPagination";
 import useBlogPagination from "../../../hooks/useBlogPagination";
@@ -7,9 +7,10 @@ import HomeCarousel from "../../home/Carousel/HomeCarousel";
 
 function BlogList({ dataList }) {
   const itemsPerPage = 5;
-  const [searchParams, setSearchParams] = useSearchParams();
-
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page")) || 1;
+
   const {
     data: doctor_blog,
     error,
@@ -23,22 +24,24 @@ function BlogList({ dataList }) {
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      setSearchParams({ page: currentPage + 1 });
-      window.scrollTo({ top: 0, behavior: "smooth" }); 
+      navigate(`/blog?page=${currentPage + 1}`);
     }
   };
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
-      setSearchParams({ page: currentPage - 1 });
-      window.scrollTo({ top: 0, behavior: "smooth" }); 
+      navigate(`/blog?page=${currentPage - 1}`);
     }
   };
 
   const handlePageChange = (page) => {
-    setSearchParams({ page });
-    window.scrollTo({ top: 0, behavior: "smooth" }); 
+    navigate(`/blog?page=${page}`);
   };
+
+  // Scroll to top whenever the current page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
