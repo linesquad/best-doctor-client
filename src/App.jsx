@@ -15,6 +15,7 @@ import SingleBlogContent from "./pages/SingleBlogContent";
 import SingleServicesContent from "./pages/SingleServicesContent";
 import Skills from "./pages/Skills";
 import MainLayout from "./components/MainLayout";
+import Booking from "./pages/Booking";
 
 const routes = [
   {
@@ -34,6 +35,7 @@ const routes = [
       { path: "experience", element: <Experience /> },
       { path: "skills", element: <Skills /> },
       { path: "awards", element: <Awards /> },
+      { path: "booking", element: <Booking /> },
     ],
   },
 ];
