@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css"; // Default CSS for the calendar
+import ReusableTitle from "../../ui/ReusableTitle";
 
 function BookingCalendar() {
   const [date, setDate] = useState(new Date());
@@ -12,8 +13,14 @@ function BookingCalendar() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">Calendar</h2>
-      <div>
+       <ReusableTitle
+        title={"Calendar"}
+        size={"text-[2rem]"}
+        color={"text-black"}
+        fontWeight={"font-bold"}
+      />
+ 
+      <div className="mt-6">
         <Calendar
           onChange={handleDateChange}
           value={date}

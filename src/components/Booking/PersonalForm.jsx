@@ -18,7 +18,7 @@ function PersonalForm() {
   return (
 
     <div>
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+      <h2 className="text-2xl font-extrabold mb-2 mt-10 text-gray-800">
         Enter Personal Information
       </h2>
       <form onSubmit={handleAddPatient} className="space-y-6">

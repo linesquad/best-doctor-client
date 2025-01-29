@@ -1,12 +1,18 @@
 import { avaliableService } from "../../lib/avaliableService";
 import CustomButton from "../../ui/CustomButton";
+import ReusableTitle from "../../ui/ReusableTitle";
 
 function AvailableServices() {
   return (
-    <div className="">
-      <h2 className="text-3xl font-extrabold mb-8">Available Services</h2>
+    <div>
+      <ReusableTitle
+        title={"Available Services"}
+        size={"text-[2rem]"}
+        color={"text-black"}
+        fontWeight={"font-bold"}
+      />
 
-      <div className="flex flex-wrap gap-4 justify-between">
+      <div className="flex flex-wrap gap-4 justify-between mt-6">
         <CustomButton
           name="17 Monday"
           color="text-white"
