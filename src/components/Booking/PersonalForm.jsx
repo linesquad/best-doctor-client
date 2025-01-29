@@ -16,7 +16,8 @@ function PersonalForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+
+    <div>
       <h2 className="text-2xl font-bold mb-6 text-gray-800">
         Enter Personal Information
       </h2>
@@ -93,6 +94,7 @@ function PersonalForm() {
         </button>
       </form>
     </div>
+
   );
 }
 

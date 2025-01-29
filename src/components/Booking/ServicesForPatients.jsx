@@ -3,7 +3,7 @@ import PersonalForm from "./PersonalForm";
 
 function ServicesForPatients() {
   return (
-    <div className="mt-[7.19rem] px-8 sm:px-12 md:px-16">
+    <div className="mt-[7.19rem] ">
       <ReusableTitle
         title={"Services For My Patients"}
         size={"text-[3rem]"}
