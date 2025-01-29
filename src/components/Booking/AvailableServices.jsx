@@ -44,23 +44,21 @@ function AvailableServices() {
       </div>
 
       <div className="mt-4 px-4 bg-[#A3D2FF] rounded-2xl shadow-lg">
-        <div>
-          {avaliableService.map((service) => (
-            <div
-              key={service.id}
-              className="flex justify-between items-center gap-4 py-4 rounded-xl"
-            >
-              <div className=" py-4 px-6 bg-[#c2dbfc] rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
-                <span className="text-gray-700  text-[0.9375rem] font-extrabold leading-[135%]">
-                  {service.name}
-                </span>
-              </div>
-              <div className=" py-4 px-6 bg-white rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
-                <span className="text-gray-900 font-bold">{service.price}</span>
-              </div>
+        {avaliableService.map((service, index) => (
+          <div
+            key={index}
+            className="flex justify-between items-center gap-4 py-4 rounded-xl"
+          >
+            <div className=" py-4 px-6 bg-[#c2dbfc] rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <span className="text-gray-700  text-[0.9375rem] font-extrabold leading-[135%]">
+                {service.name}
+              </span>
             </div>
-          ))}
-        </div>
+            <div className=" py-4 px-6 bg-white rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <span className="text-gray-900 font-bold">{service.price}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
