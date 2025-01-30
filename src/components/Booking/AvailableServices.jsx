@@ -2,11 +2,19 @@ import { avaliableService } from "../../lib/avaliableService";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 
-function AvailableServices({ date }) {
+function AvailableServices({ date, selectedService, setSelectedService }) {
+  const handleServiceClick = (service) => {
+    setSelectedService(service);
+  };
+
   const formattedDate = date.toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
   });
+
+  if (selectedService) {
+    var price = selectedService.price;
+  }
 
   return (
     <div>
@@ -19,7 +27,7 @@ function AvailableServices({ date }) {
 
       <div className="flex flex-wrap gap-4 justify-between mt-6">
         <CustomButton
-          name={formattedDate} 
+          name={formattedDate}
           type={"button"}
           color="text-white"
           bg="bg-[#003B73]"
@@ -34,7 +42,7 @@ function AvailableServices({ date }) {
           animation={"transition-transform duration-300 hover:scale-105"}
         />
         <CustomButton
-          name="Price"
+          name={price || "Price"}
           type={"button"}
           color="text-white"
           bg="bg-[#003B73]"
@@ -50,23 +58,36 @@ function AvailableServices({ date }) {
         />
       </div>
 
-      <div className="mt-4 px-4 bg-[#A3D2FF] rounded-2xl shadow-lg">
+      <div className="flex flex-col gap-4  mt-4 py-4 px-6 bg-[#A3D2FF] rounded-2xl shadow-lg">
         {avaliableService.map((service, index) => (
           <div
             key={index}
-            className="flex justify-between items-center gap-4 py-4 rounded-xl"
+            onClick={() => handleServiceClick(service)}
+            className="border cursor-pointer bg-[#c2dbfc] flex justify-between items-center gap-4 py-4 rounded-xl transition-transform duration-300 hover:scale-105"
           >
-            <div className=" py-4 px-6 bg-[#c2dbfc] rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
-              <span className="text-gray-700  text-[0.9375rem] font-extrabold leading-[135%]">
+            <div className="py-4 px-6  rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
+              <span className="text-gray-700 text-[0.9375rem] font-extrabold leading-[135%]">
                 {service.name}
               </span>
             </div>
-            <div className=" py-4 px-6 bg-white rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
+            <div className="py-4 px-6  rounded-[3rem] cursor-pointer transition-transform duration-300 hover:scale-105">
               <span className="text-gray-900 font-bold">{service.price}</span>
             </div>
           </div>
         ))}
       </div>
+
+      {selectedService && (
+        <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+          <h2 className="text-lg font-bold text-gray-900">Selected Service:</h2>
+          <div className="flex gap-6">
+            <p className="text-gray-700">{selectedService.name}</p>
+            <p className="text-gray-700 font-extrabold">
+              {selectedService.price}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

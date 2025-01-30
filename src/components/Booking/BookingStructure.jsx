@@ -7,6 +7,7 @@ import ServicesForPatients from "./ServicesForPatients";
 import { useAddPatient } from "../../hooks/useAddPatient";
 
 function BookingStructure() {
+  const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(new Date());
   const formRef = useRef(null)
 
@@ -22,10 +23,11 @@ function BookingStructure() {
       age: formData.get("age"),
       condition: formData.get("condition"),
       date: date,
+      price: selectedService.price,
+      procedure: selectedService.name
     };
     console.log(patient);
     
-
     addPatient(patient);
     formRef.current.reset();
   };
@@ -36,7 +38,7 @@ function BookingStructure() {
         <ServicesForPatients />
         <div className="flex lg:flex-row flex-col gap-10 lg:gap-0 justify-between my-16">
           <BookingCalendar date={date} setDate={setDate} />
-          <AvailableServices date={date}/>
+          <AvailableServices date={date} selectedService={selectedService} setSelectedService={setSelectedService}/>
         </div >
         <AvailableTime />
       </div>

@@ -34,6 +34,7 @@ function BookingTop() {
                 >
                   <div className="p-1">
                     <button
+                    type="button"
                       className="bg-white rounded-full flex justify-center items-center 
                     p-3 sm:p-4 md:p-5 lg:p-8 transition-all duration-300
                     group-hover:bg-blue-500"
