@@ -2,7 +2,12 @@ import { avaliableService } from "../../lib/avaliableService";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 
-function AvailableServices() {
+function AvailableServices({ date }) {
+  const formattedDate = date.toLocaleDateString("en-US", {
+    weekday: "long",
+    day: "numeric",
+  });
+
   return (
     <div>
       <ReusableTitle
@@ -14,7 +19,8 @@ function AvailableServices() {
 
       <div className="flex flex-wrap gap-4 justify-between mt-6">
         <CustomButton
-          name="17 Monday"
+          name={formattedDate} 
+          type={"button"}
           color="text-white"
           bg="bg-[#003B73]"
           width="w-full sm:w-auto max-w-[12rem]"
@@ -29,6 +35,7 @@ function AvailableServices() {
         />
         <CustomButton
           name="Price"
+          type={"button"}
           color="text-white"
           bg="bg-[#003B73]"
           width="w-full sm:w-auto max-w-[12rem]"

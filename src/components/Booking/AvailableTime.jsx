@@ -16,6 +16,7 @@ function AvailableTime() {
         <div className="flex w-full gap-4 items-center justify-between flex-wrap mt-10 mb-24">
           <CustomButton
             name="08:30 AM - 12:00 AM"
+            type={"button"}
             color="text-black"
             bg="bg-gray-300"
             width="w-full sm:w-auto"
@@ -31,6 +32,7 @@ function AvailableTime() {
           />
           <CustomButton
             name="12:00 AM - 16:00 PM"
+            type={"button"}
             color="text-black"
             bg="bg-gray-300"
             width="w-full sm:w-auto"
@@ -46,6 +48,7 @@ function AvailableTime() {
           />
           <CustomButton
             name="16:00 PM - 20:00 PM"
+            type={"button"}
             color="text-black"
             bg="bg-gray-300"
             width="w-full sm:w-auto"

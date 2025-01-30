@@ -1,15 +1,15 @@
-import { useState } from "react";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css"; 
+import "react-calendar/dist/Calendar.css";
 import ReusableTitle from "../../ui/ReusableTitle";
 
-
-function BookingCalendar() {
-  const [date, setDate] = useState(new Date());
+function BookingCalendar({date, setDate}) {
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
-    console.log("Selected Date:", newDate);
+    console.log(newDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      day: "numeric",
+    }));
   };
 
   return (
@@ -20,12 +20,18 @@ function BookingCalendar() {
         color={"text-black"}
         fontWeight={"font-bold"}
       />
-      
+
       <div className="mt-6">
+        <p>
+          {date.toLocaleDateString("en-US", {
+            weekday: "long",
+            day: "numeric",
+          })}
+        </p>
         <Calendar
           onChange={handleDateChange}
           value={date}
-          className="rounded-lg" 
+          className="rounded-lg"
         />
       </div>
     </div>
