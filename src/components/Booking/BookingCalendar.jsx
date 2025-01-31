@@ -1,6 +1,7 @@
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import ReusableTitle from "../../ui/ReusableTitle";
+import "../../CalendarStyles.css"
 
 function BookingCalendar({ date, setDate }) {
   const handleDateChange = (newDate) => {
@@ -29,17 +30,11 @@ function BookingCalendar({ date, setDate }) {
       />
 
       <div className="mt-6">
-        <p>
-          {date.toLocaleDateString("en-US", {
-            weekday: "long",
-            day: "numeric",
-          })}
-        </p>
         <Calendar
           onChange={handleDateChange}
           value={date}
-          className="rounded-lg"
-          tileDisabled={disablePastDates} 
+          className="custom-calendar"
+          tileDisabled={disablePastDates}
         />
       </div>
     </div>

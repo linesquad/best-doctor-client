@@ -36,18 +36,21 @@ function BookingStructure() {
       <BookingTop />
       <div className="px-8 sm:px-12 md:px-16">
         <ServicesForPatients />
-        <div className="flex lg:flex-row flex-col gap-10 lg:gap-0 justify-between my-16">
+        <div className="flex lg:flex-row flex-col gap-10 lg:gap-6 justify-between my-16">
           <BookingCalendar date={date} setDate={setDate} />
           <AvailableServices date={date} selectedService={selectedService} setSelectedService={setSelectedService}/>
         </div >
         <AvailableTime />
       </div>
+      <div className="flex justify-center items-center px-2">
+
       <button
           type="submit"
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
+          className="w-full max-w-[400px] bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
         >
-          Submit
+          Book
         </button>
+      </div>
     </form>
   );
 }

@@ -1,7 +1,14 @@
+import { useGetAvailableTime } from "../../hooks/useGetAvailableTime";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 
 function AvailableTime() {
+  const {data,isError,isLoading,error} = useGetAvailableTime()
+  console.log(data);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error.message}</p>;
+  
   return (
     <div>
       <div className="flex justify-center w-full">
