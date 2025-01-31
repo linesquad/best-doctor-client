@@ -30,6 +30,8 @@ function BookingStructure() {
     
     addPatient(patient);
     formRef.current.reset();
+    setDate(new Date())
+    setSelectedService(null)
   };
   return (
     <form ref={formRef} onSubmit={handleSubmit}>

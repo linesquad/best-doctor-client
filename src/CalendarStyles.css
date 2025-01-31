@@ -10,6 +10,7 @@
 .custom-calendar .react-calendar__tile {
   row-gap: 20px;
   background-color: #cce7ff;
+  
   transition: 0.3s;
 }
 @media (min-width: 1100px) {
