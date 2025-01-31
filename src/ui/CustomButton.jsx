@@ -18,7 +18,8 @@ function CustomButton({
   centered,
   animation,
   hover,
-  shadow
+  shadow,
+  onClick, 
 }) {
   return (
     <div className={`${centered}`}>
@@ -28,6 +29,7 @@ function CustomButton({
         className={`${color} ${width} ${bg} ${paddingX} ${paddingY} ${marginT} ${maxW} ${weight} ${animation} ${hover} ${shadow}
           transition-all duration-500 ease-in-out ${rounded} cursor-pointer ${font} ${textSize} font-extrabold ${leading}
           ${disabled || loading ? "opacity-50 cursor-not-allowed" : ""}`}
+        onClick={onClick} 
       >
         {loading ? <div className="main-loader mx-auto"></div> : name}
       </button>
