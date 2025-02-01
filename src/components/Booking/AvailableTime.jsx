@@ -3,6 +3,7 @@ import { useGetDaysOfWeek } from "../../hooks/useGetDaysOfWeek";
 import { useUpdateAvailableTime } from "../../hooks/useUpdateAvailableTime";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
+import LoadingTime from "./LoadingTime";
 
 function AvailableTime() {
   const { data, isError, isLoading, error } = useGetAvailableTime();
@@ -30,10 +31,8 @@ function AvailableTime() {
     }).replace(/^0/, '');
   };
 
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error: {error.message}</p>;
-  if (weekLoading) return <p>Loading...</p>;
-  if (weekIsError) return <p>Error: {error.message}</p>;
+  if (isLoading || weekLoading) return <p><LoadingTime /></p>;
+  if (isError || weekIsError) return <p>Error: {error.message}</p>;
   if (!data?.length) return <p>No available time slots</p>;
 
   return (
