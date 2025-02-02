@@ -1,5 +1,6 @@
 import { useGetAvailableTime } from "../../hooks/useGetAvailableTime";
 import { useGetDaysOfWeek } from "../../hooks/useGetDaysOfWeek";
+import { useGetPatients } from "../../hooks/useGetPatients";
 import { useUpdateAvailableTime } from "../../hooks/useUpdateAvailableTime";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
@@ -9,6 +10,7 @@ function AvailableTime() {
   const { data, isError, isLoading, error } = useGetAvailableTime();
   const { mutate: updateTimeSlot } = useUpdateAvailableTime();
   const {data: daysOfWeek, isLoading: weekLoading, isError: weekIsError} = useGetDaysOfWeek()
+  const {data: getPatients,isError:patientsError,isLoading:patientsLoading} = useGetPatients()
   console.log(daysOfWeek);
   
   const handleTimeSlotClick = (id) => {
@@ -18,6 +20,8 @@ function AvailableTime() {
       updateTimeSlot({ id, is_avaliable: false });
     }
   };
+  console.log(getPatients);
+  
 
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(':');
@@ -31,8 +35,8 @@ function AvailableTime() {
     }).replace(/^0/, '');
   };
 
-  if (isLoading || weekLoading) return <p><LoadingTime /></p>;
-  if (isError || weekIsError) return <p>Error: {error.message}</p>;
+  if (isLoading || weekLoading || patientsLoading) return <div><LoadingTime /></div>;
+  if (isError || weekIsError || patientsError) return <p>Error: {error.message}</p>;
   if (!data?.length) return <p>No available time slots</p>;
 
   return (

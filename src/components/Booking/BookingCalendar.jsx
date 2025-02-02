@@ -20,6 +20,8 @@ function BookingCalendar({ date, setDate }) {
     return date < today;
   };
 
+  
+
   return (
     <div>
       <ReusableTitle
