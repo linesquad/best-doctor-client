@@ -6,22 +6,37 @@ import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 import LoadingTime from "./LoadingTime";
 
-function AvailableTime({ selectedDay }) { 
+function AvailableTime({ selectedDay }) {
   const { data, isError, isLoading, error } = useGetAvailableTime();
   const { mutate: updateDaysOfWeek } = useUpdateDaysOfWeek();
-  const { data: daysOfWeek, isLoading: weekLoading, isError: weekIsError } = useGetDaysOfWeek();
-  const { data: getPatients, isError: patientsError, isLoading: patientsLoading } = useGetPatients();
+  const {
+    data: daysOfWeek,
+    isLoading: weekLoading,
+    isError: weekIsError,
+  } = useGetDaysOfWeek();
+  const {
+    // data: getPatients,
+    isError: patientsError,
+    isLoading: patientsLoading,
+  } = useGetPatients();
 
-  console.log(daysOfWeek);
-  
+  if (isLoading || weekLoading || patientsLoading) return <div><LoadingTime /></div>;
+  if (isError || weekIsError || patientsError) return <p>Error: {error.message}</p>;
+  if (!data?.length) return <p>No available time slots</p>;
+
+  const fetchClickedWeekDay = daysOfWeek.filter(
+    (item) => item.doctor_availability.day_of_week == selectedDay
+  );
+  console.log(fetchClickedWeekDay);
+
   const handleTimeSlotClick = (id) => {
-    const timeSlot = daysOfWeek.find((slot) => slot.id == id);
+    const timeSlot = fetchClickedWeekDay.find((slot) => slot.id == id);
     if (timeSlot) {
       timeSlot.is_avaliable = false;
       updateDaysOfWeek({ id, is_avaliable: false });
     }
   };
-console.log(data);
+  console.log(data);
 
   const formatTime = (timeString) => {
     const [hours, minutes] = timeString.split(":");
@@ -36,10 +51,6 @@ console.log(data);
       .replace(/^0/, "");
   };
 
-  if (isLoading || weekLoading || patientsLoading) return <div><LoadingTime /></div>;
-  if (isError || weekIsError || patientsError) return <p>Error: {error.message}</p>;
-  if (!data?.length) return <p>No available time slots</p>;
-
   return (
     <div>
       <div className="flex justify-center w-full">
@@ -52,29 +63,37 @@ console.log(data);
       </div>
       <div className="flex justify-center">
         <div className="flex w-full gap-4 items-center justify-between flex-wrap mt-10 mb-24">
-          {daysOfWeek
-            .filter((item) => item.week_day == selectedDay)
-            .map((timeSlot) => (
-              <CustomButton
-                key={timeSlot.id}
-                name={`${formatTime(timeSlot.start_time)} - ${formatTime(timeSlot.end_time)}`}
-                type="button"
-                color={timeSlot.is_avaliable ? "text-black" : "text-gray-400"}
-                bg={timeSlot.is_avaliable ? "bg-gray-300" : "bg-gray-100"}
-                width="w-full sm:w-auto"
-                height="h-[3.5rem]"
-                paddingY="py-3 sm:py-4"
-                paddingX="px-6 sm:px-10"
-                textSize="text-base sm:text-lg"
-                font="font-semibold"
-                rounded="rounded-[3.5rem]"
-                shadow="shadow-lg"
-                animation={timeSlot.is_avaliable ? "transition-transform duration-300 hover:scale-105" : ""}
-                hover={timeSlot.is_avaliable ? "hover:bg-[#004682] hover:text-white" : ""}
-                disabled={!timeSlot.is_avaliable}
-                onClick={() => handleTimeSlotClick(timeSlot.id)}
-              />
-            ))}
+          {fetchClickedWeekDay.map((timeSlot) => (
+            <CustomButton
+              key={timeSlot.id}
+              name={`${formatTime(timeSlot.start_time)} - ${formatTime(
+                timeSlot.end_time
+              )}`}
+              type="button"
+              color={timeSlot.is_avaliable ? "text-black" : "text-gray-400"}
+              bg={timeSlot.is_avaliable ? "bg-gray-300" : "bg-gray-100"}
+              width="w-full sm:w-auto"
+              height="h-[3.5rem]"
+              paddingY="py-3 sm:py-4"
+              paddingX="px-6 sm:px-10"
+              textSize="text-base sm:text-lg"
+              font="font-semibold"
+              rounded="rounded-[3.5rem]"
+              shadow="shadow-lg"
+              animation={
+                timeSlot.is_avaliable
+                  ? "transition-transform duration-300 hover:scale-105"
+                  : ""
+              }
+              hover={
+                timeSlot.is_avaliable
+                  ? "hover:bg-[#004682] hover:text-white"
+                  : ""
+              }
+              disabled={!timeSlot.is_avaliable}
+              onClick={() => handleTimeSlotClick(timeSlot.id)}
+            />
+          ))}
         </div>
       </div>
     </div>

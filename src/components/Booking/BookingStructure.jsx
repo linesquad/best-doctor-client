@@ -9,6 +9,7 @@ import { useAddPatient } from "../../hooks/useAddPatient";
 function BookingStructure() {
   const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(new Date());
+  
   const formRef = useRef(null)
 
    const { mutate: addPatient } = useAddPatient();
