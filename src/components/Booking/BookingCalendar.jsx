@@ -5,22 +5,15 @@ import "../../CalendarStyles.css"
 
 function BookingCalendar({ date, setDate }) {
   const handleDateChange = (newDate) => {
-    setDate(newDate);
-    console.log(
-      newDate.toLocaleDateString("en-US", {
-        weekday: "long",
-        day: "numeric",
-      })
-    );
-  };
-
+    setDate(newDate)
+    console.log(`${newDate.getDay()}`);
+  }
+  
   const disablePastDates = ({ date }) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     return date < today;
   };
-
-  
 
   return (
     <div>

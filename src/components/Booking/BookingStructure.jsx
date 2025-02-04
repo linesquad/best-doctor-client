@@ -12,8 +12,13 @@ function BookingStructure() {
   const formRef = useRef(null)
 
    const { mutate: addPatient } = useAddPatient();
+   const formatDate = (date) => {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    return `${day}-${month}`; 
+  };
 
-  const handleSubmit = (e) => {
+   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const patient = {
@@ -24,14 +29,15 @@ function BookingStructure() {
       condition: formData.get("condition"),
       date: date,
       price: selectedService.price,
-      procedure: selectedService.name
+      procedure: selectedService.name,
+      booked_day: formatDate(date),
     };
     console.log(patient);
     
     addPatient(patient);
     formRef.current.reset();
-    setDate(new Date())
-    setSelectedService(null)
+    setDate(new Date());
+    setSelectedService(null);
   };
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -42,7 +48,7 @@ function BookingStructure() {
           <BookingCalendar date={date} setDate={setDate} />
           <AvailableServices date={date} selectedService={selectedService} setSelectedService={setSelectedService}/>
         </div >
-        <AvailableTime />
+        <AvailableTime selectedDay={date.getDay()} />
       </div>
       <div className="flex justify-center items-center px-2">
 
