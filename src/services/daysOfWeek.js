@@ -1,10 +1,13 @@
 import supabase from "./supabase";
 
-export const getDaysOfWeek = async () => {
+export const getDaysOfWeek = async (selectedDay) => {
   const { data, error } = await supabase
     .from("days_of_week")
-    .select("*, doctor_availability(*)"); 
+    .select("*, doctor_availability(*)")
+    .eq("week_day", selectedDay)
+    console.log(selectedDay);
   if (error) throw new Error(error.message);
+  
   return data;
 };
 

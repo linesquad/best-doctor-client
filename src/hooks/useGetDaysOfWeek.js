@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDaysOfWeek } from "../services/daysOfWeek";
 
-export const useGetDaysOfWeek = () => {
+export const useGetDaysOfWeek = (selectedDay) => {
   return useQuery({
-    queryKey: ["daysOfWeek"],
-    queryFn: getDaysOfWeek,
+    queryKey: ["daysOfWeek", selectedDay],
+    queryFn: () => getDaysOfWeek(selectedDay),
   });
 };

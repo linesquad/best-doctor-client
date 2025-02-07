@@ -13,16 +13,17 @@ function AvailableTime({ selectedDay }) {
     data: daysOfWeek,
     isLoading: weekLoading,
     isError: weekIsError,
-  } = useGetDaysOfWeek();
+  } = useGetDaysOfWeek(selectedDay);
   const {
     // data: getPatients,
     isError: patientsError,
     isLoading: patientsLoading,
   } = useGetPatients();
-
+  
   if (isLoading || weekLoading || patientsLoading) return <div><LoadingTime /></div>;
   if (isError || weekIsError || patientsError) return <p>Error: {error.message}</p>;
   if (!data?.length) return <p>No available time slots</p>;
+console.log(daysOfWeek);
 
   const fetchClickedWeekDay = daysOfWeek.filter(
     (item) => item.doctor_availability.day_of_week == selectedDay
