@@ -6,7 +6,7 @@ import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 import LoadingTime from "./LoadingTime";
 
-function AvailableTime({ selectedDay }) {
+function AvailableTime({ selectedDay,setSelectedTimeSlot }) {
   const { data, isError, isLoading, error } = useGetAvailableTime();
   const { mutate: updateDaysOfWeek } = useUpdateDaysOfWeek();
   const {
@@ -23,7 +23,7 @@ function AvailableTime({ selectedDay }) {
   if (isLoading || weekLoading || patientsLoading) return <div><LoadingTime /></div>;
   if (isError || weekIsError || patientsError) return <p>Error: {error.message}</p>;
   if (!data?.length) return <p>No available time slots</p>;
-console.log(daysOfWeek);
+  // console.log(daysOfWeek);
 
   const fetchClickedWeekDay = daysOfWeek.filter(
     (item) => item.doctor_availability.day_of_week == selectedDay
@@ -35,8 +35,13 @@ console.log(daysOfWeek);
     if (timeSlot) {
       timeSlot.is_avaliable = false;
       updateDaysOfWeek({ id, is_avaliable: false });
+      setSelectedTimeSlot({
+        start_time: timeSlot.start_time,
+        end_time: timeSlot.end_time,
+      });
     }
   };
+  
   console.log(data);
 
   const formatTime = (timeString) => {

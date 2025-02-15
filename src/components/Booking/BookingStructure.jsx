@@ -9,6 +9,7 @@ import { useAddPatient } from "../../hooks/useAddPatient";
 function BookingStructure() {
   const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(new Date());
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
 
   const formRef = useRef(null);
 
@@ -35,6 +36,8 @@ function BookingStructure() {
       price: selectedService.price,
       procedure: selectedService.name,
       booked_day: formatDate(date),
+      specific_time: selectedTimeSlot
+      && `${selectedTimeSlot.start_time} - ${selectedTimeSlot.end_time}`
     };
     console.log(patient);
 
@@ -57,7 +60,8 @@ function BookingStructure() {
             setSelectedService={setSelectedService}
           />
         </div>
-        <AvailableTime selectedDay={dayIndex} />
+        <AvailableTime selectedDay={dayIndex} setSelectedTimeSlot={setSelectedTimeSlot} />
+
       </div>
       <div className="flex justify-center items-center px-2">
         <button
