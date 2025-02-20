@@ -9,36 +9,33 @@ import { useAddPatient } from "../../hooks/useAddPatient";
 function BookingStructure() {
   const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(new Date());
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
+  const [timeId, setTimeId] = useState(null);
+  const [bookingLength, setBookingLength] = useState(0)
 
   const formRef = useRef(null);
-
   const { mutate: addPatient } = useAddPatient();
-
-  const formatDate = (date) => {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    return `${day}-${month}`;
-  };
 
   const dayIndex = (date.getDay() + 7) % 7;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
+
+    const formattedDate = date.toISOString().split("T")[0];
+    console.log(formattedDate);
+
     const patient = {
       user_name: formData.get("user_name"),
       user_email: formData.get("user_email"),
       user_phone: formData.get("user_phone"),
       age: formData.get("age"),
       condition: formData.get("condition"),
-      date: date,
-      price: selectedService.price,
-      procedure: selectedService.name,
-      booked_day: formatDate(date),
-      specific_time: selectedTimeSlot
-      && `${selectedTimeSlot.start_time} - ${selectedTimeSlot.end_time}`
+      date: formattedDate, 
+      price: selectedService?.price,
+      procedure: selectedService?.name,
+      avaliable_time: timeId,
     };
+
     console.log(patient);
 
     addPatient(patient);
@@ -46,6 +43,8 @@ function BookingStructure() {
     setDate(new Date());
     setSelectedService(null);
   };
+  console.log(bookingLength);
+  
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -53,15 +52,14 @@ function BookingStructure() {
       <div className="px-8 sm:px-12 md:px-16">
         <ServicesForPatients />
         <div className="flex lg:flex-row flex-col gap-10 lg:gap-6 justify-between my-16">
-          <BookingCalendar date={date} setDate={setDate} />
+          <BookingCalendar date={date} setDate={setDate} setBookingLength={setBookingLength} />
           <AvailableServices
             date={date}
             selectedService={selectedService}
             setSelectedService={setSelectedService}
           />
         </div>
-        <AvailableTime selectedDay={dayIndex} setSelectedTimeSlot={setSelectedTimeSlot} />
-
+        <AvailableTime selectedDay={dayIndex} setTimeId={setTimeId} bookingLength={bookingLength}/>
       </div>
       <div className="flex justify-center items-center px-2">
         <button

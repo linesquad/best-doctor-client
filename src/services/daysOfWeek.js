@@ -5,7 +5,7 @@ export const getDaysOfWeek = async (selectedDay) => {
     .from("days_of_week")
     .select("*, doctor_availability(*)")
     .eq("week_day", selectedDay)
-    console.log(selectedDay);
+    // console.log(selectedDay);
   if (error) throw new Error(error.message);
   
   return data;
