@@ -10,7 +10,7 @@ function BookingStructure() {
   const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(new Date());
   const [timeId, setTimeId] = useState(null);
-  const [bookingLength, setBookingLength] = useState(0)
+  const [bookingLength, setBookingLength] = useState([])
 
   const formRef = useRef(null);
   const { mutate: addPatient } = useAddPatient();

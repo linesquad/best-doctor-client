@@ -1,6 +1,7 @@
 import { useGetAvailableTime } from "../../hooks/useGetAvailableTime";
 import { useGetDaysOfWeek } from "../../hooks/useGetDaysOfWeek";
 import { useGetPatients } from "../../hooks/useGetPatients";
+// import { useGetPatientsByDate } from "../../hooks/useGetPatientsByDate";
 // import { useUpdateDaysOfWeek } from "../../hooks/useUpdateDateOfWeek";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
@@ -31,7 +32,17 @@ function AvailableTime({ selectedDay,setTimeId,bookingLength }) {
   const fetchClickedWeekDay = daysOfWeek.filter(
     (item) => item.doctor_availability.id == selectedDay
   );
-
+  
+  let weekDayIds = fetchClickedWeekDay?.map(item => item.id); // Array of IDs
+  let bookingIds = bookingLength?.map(item => item.id); // Array of booking IDs
+  
+  // Find common IDs between weekDayIds and bookingIds
+  let findWeekId = weekDayIds?.filter(id => bookingIds?.includes(id));
+  
+  console.log(bookingLength);
+  console.log(findWeekId);
+  
+  
 
   const handleTimeSlotClick = (id) => {
     const timeSlot = fetchClickedWeekDay.find((slot) => slot.id == id);

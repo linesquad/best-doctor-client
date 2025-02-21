@@ -9,16 +9,16 @@ function BookingCalendar({ date, setDate, setBookingLength }) {
   const [formatDate, setFormatDate] = useState(null);
   const {data,isLoading,isError,error} = useGetPatientsByDate(formatDate)
   
-  console.log(data);
-  
   const handleDateChange = (newDate) => {
     setDate(newDate);
     const formattedDate = newDate.toISOString().split("T")[0];
     setFormatDate(formattedDate)
-    setBookingLength(data?.length)
+    setBookingLength(data)
     console.log(data?.length);
     
   }
+
+  console.log(data);
   
   const disablePastDates = ({ date }) => {
     const today = new Date();
