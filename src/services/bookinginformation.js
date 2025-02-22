@@ -1,16 +1,18 @@
 import supabase from "./supabase";
 
-
 export const getPatients = async () => {
   const { data, error } = await supabase.from("booking").select("*");
   if (error) throw new Error(error.message);
-  return data
+  return data;
 };
 
 export const getPatientsByDate = async (formatedDate) => {
-  const { data, error } = await supabase.from("booking").select("*").eq("date", formatedDate);
+  const { data, error } = await supabase
+    .from("booking")
+    .select("avaliable_time")
+    .eq("date", formatedDate);
   if (error) throw new Error(error.message);
-  return data
+  return data;
 };
 
 export const addPatient = async (patient) => {

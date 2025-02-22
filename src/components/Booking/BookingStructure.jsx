@@ -10,7 +10,8 @@ function BookingStructure() {
   const [selectedService, setSelectedService] = useState(null);
   const [date, setDate] = useState(new Date());
   const [timeId, setTimeId] = useState(null);
-  const [bookingLength, setBookingLength] = useState([])
+  const [bookingLength, setBookingLength] = useState([]);
+  const [formatDate, setFormatDate] = useState(null);
 
   const formRef = useRef(null);
   const { mutate: addPatient } = useAddPatient();
@@ -30,21 +31,17 @@ function BookingStructure() {
       user_phone: formData.get("user_phone"),
       age: formData.get("age"),
       condition: formData.get("condition"),
-      date: formattedDate, 
+      date: formattedDate,
       price: selectedService?.price,
       procedure: selectedService?.name,
       avaliable_time: timeId,
     };
-
-    console.log(patient);
 
     addPatient(patient);
     formRef.current.reset();
     setDate(new Date());
     setSelectedService(null);
   };
-  console.log(bookingLength);
-  
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -52,14 +49,25 @@ function BookingStructure() {
       <div className="px-8 sm:px-12 md:px-16">
         <ServicesForPatients />
         <div className="flex lg:flex-row flex-col gap-10 lg:gap-6 justify-between my-16">
-          <BookingCalendar date={date} setDate={setDate} setBookingLength={setBookingLength} />
+          <BookingCalendar
+            date={date}
+            setDate={setDate}
+            setBookingLength={setBookingLength}
+            formatDate={formatDate}
+            setFormatDate={setFormatDate}
+          />
           <AvailableServices
             date={date}
             selectedService={selectedService}
             setSelectedService={setSelectedService}
           />
         </div>
-        <AvailableTime selectedDay={dayIndex} setTimeId={setTimeId} bookingLength={bookingLength}/>
+        <AvailableTime
+          selectedDay={dayIndex}
+          setTimeId={setTimeId}
+          bookingLength={bookingLength}
+          formatDate={formatDate}
+        />
       </div>
       <div className="flex justify-center items-center px-2">
         <button
