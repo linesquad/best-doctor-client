@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGetDaysOfWeek } from "../../hooks/useGetDaysOfWeek";
 import { useGetPatientsByDate } from "../../hooks/useGetPatientsByDate";
 import CustomButton from "../../ui/CustomButton";
@@ -5,6 +6,8 @@ import ReusableTitle from "../../ui/ReusableTitle";
 import LoadingTime from "./LoadingTime";
 
 function AvailableTime({ selectedDay, setTimeId, formatDate }) {
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null); 
+
   const {
     data: daysOfWeek,
     isLoading: weekLoading,
@@ -28,6 +31,7 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
 
   const handleTimeSlotClick = (id) => {
     setTimeId(id);
+    setSelectedTimeSlot(id); 
   };
 
   const formatTime = (timeString) => {
@@ -47,7 +51,6 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
     const isAvailable = patientsByDate.find(
       (time) => time.avaliable_time == timeSlot
     );
-    console.log(isAvailable);
     return isAvailable;
   };
 
@@ -66,12 +69,11 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
           {daysOfWeek.map((timeSlot) => (
             <CustomButton
               key={timeSlot.id}
-              name={`${formatTime(timeSlot.start_time)} - ${formatTime(
-                timeSlot.end_time
-              )}`}
+              name={`${formatTime(timeSlot.start_time)} - ${formatTime(timeSlot.end_time)}`}
               type="button"
               width="w-full sm:w-auto"
               height="h-[3.5rem]"
+              bg="bg-blue-400"
               paddingY="py-3 sm:py-4"
               paddingX="px-6 sm:px-10"
               textSize="text-base sm:text-lg"
@@ -80,6 +82,13 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
               shadow="shadow-lg"
               disabled={checkIfTimeIsAvailable(timeSlot.id)}
               onClick={() => handleTimeSlotClick(timeSlot.id)}
+              className={`transition-all duration-300 ease-in-out transform ${
+                checkIfTimeIsAvailable(timeSlot.id)
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : selectedTimeSlot === timeSlot.id
+                  ? "bg-blue-700 text-white scale-105" 
+                  : "bg-blue-400 hover:scale-105 hover:bg-blue-500 hover:text-white active:scale-95"
+              }`}
             />
           ))}
         </div>
