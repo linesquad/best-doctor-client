@@ -32,6 +32,7 @@ function BookingStructure() {
       age: formData.get("age"),
       condition: formData.get("condition"),
       date: formattedDate,
+      status: "Pending",
       price: selectedService?.price,
       procedure: selectedService?.name,
       avaliable_time: timeId,
