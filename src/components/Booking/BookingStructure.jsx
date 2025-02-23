@@ -14,6 +14,7 @@ function BookingStructure() {
   const [bookingLength, setBookingLength] = useState([]);
   const [formatDate, setFormatDate] = useState(null);
   const [timeError, setTimeError] = useState(false);
+  const [servicesError, setServicesError] = useState(false);
 
   const formRef = useRef(null);
   const { mutate: addPatient } = useAddPatient();
@@ -22,25 +23,37 @@ function BookingStructure() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     const form = formRef.current;
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-
+  
+    let isValid = true;
+  
     if (!timeId) {
       setTimeError(true);
-      toast.error("Please select a time.")
-      return;
+      toast.error("Please select a time.");
+      isValid = false;
     } else {
       setTimeError(false);
     }
-
+  
+    if (!selectedService?.name) {
+      setServicesError(true);
+      toast.error("Please select a service.");
+      isValid = false;
+    } else {
+      setServicesError(false);
+    }
+  
+    if (!isValid) return;
+  
     const formData = new FormData(form);
-
+  
     const formattedDate = date.toISOString().split("T")[0];
-
+  
     const patient = {
       user_name: formData.get("user_name"),
       user_email: formData.get("user_email"),
@@ -53,12 +66,13 @@ function BookingStructure() {
       procedure: selectedService?.name,
       avaliable_time: timeId,
     };
-
+  
     addPatient(patient);
     form.reset();
     setDate(new Date());
     setSelectedService(null);
   };
+  
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="mb-20">
@@ -77,6 +91,7 @@ function BookingStructure() {
             date={date}
             selectedService={selectedService}
             setSelectedService={setSelectedService}
+            servicesError={servicesError}
           />
         </div>
         <AvailableTime

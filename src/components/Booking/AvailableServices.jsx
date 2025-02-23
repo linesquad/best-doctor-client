@@ -2,7 +2,12 @@ import { avaliableService } from "../../lib/avaliableService";
 import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 
-function AvailableServices({ date, selectedService, setSelectedService }) {
+function AvailableServices({
+  date,
+  selectedService,
+  setSelectedService,
+  servicesError,
+}) {
   const handleServiceClick = (service) => {
     setSelectedService(service);
   };
@@ -79,6 +84,11 @@ function AvailableServices({ date, selectedService, setSelectedService }) {
             </div>
           );
         })}
+        <div className="flex justify-center items-center">
+          {servicesError && (
+          <p className="text-red-500 mt-2 text-xl">Please select a service.</p>
+        )}
+        </div>
       </div>
     </div>
   );
