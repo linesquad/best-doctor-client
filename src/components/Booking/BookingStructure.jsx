@@ -5,6 +5,7 @@ import BookingCalendar from "./BookingCalendar";
 import BookingTop from "./BookingTop";
 import ServicesForPatients from "./ServicesForPatients";
 import { useAddPatient } from "../../hooks/useAddPatient";
+import { toast } from "react-toastify";
 
 function BookingStructure() {
   const [selectedService, setSelectedService] = useState(null);
@@ -12,6 +13,7 @@ function BookingStructure() {
   const [timeId, setTimeId] = useState(null);
   const [bookingLength, setBookingLength] = useState([]);
   const [formatDate, setFormatDate] = useState(null);
+  const [timeError, setTimeError] = useState(false);
 
   const formRef = useRef(null);
   const { mutate: addPatient } = useAddPatient();
@@ -20,10 +22,24 @@ function BookingStructure() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(formRef.current);
+
+    const form = formRef.current;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (!timeId) {
+      setTimeError(true);
+      toast.error("Please select a time.")
+      return;
+    } else {
+      setTimeError(false);
+    }
+
+    const formData = new FormData(form);
 
     const formattedDate = date.toISOString().split("T")[0];
-    console.log(formattedDate);
 
     const patient = {
       user_name: formData.get("user_name"),
@@ -39,7 +55,7 @@ function BookingStructure() {
     };
 
     addPatient(patient);
-    formRef.current.reset();
+    form.reset();
     setDate(new Date());
     setSelectedService(null);
   };
@@ -68,6 +84,7 @@ function BookingStructure() {
           setTimeId={setTimeId}
           bookingLength={bookingLength}
           formatDate={formatDate}
+          timeError={timeError}
         />
       </div>
       <div className="flex justify-center items-center px-2">

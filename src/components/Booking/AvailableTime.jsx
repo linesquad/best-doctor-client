@@ -5,7 +5,7 @@ import CustomButton from "../../ui/CustomButton";
 import ReusableTitle from "../../ui/ReusableTitle";
 import LoadingTime from "./LoadingTime";
 
-function AvailableTime({ selectedDay, setTimeId, formatDate }) {
+function AvailableTime({ selectedDay, setTimeId, formatDate,timeError }) {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null); 
 
   const {
@@ -48,7 +48,7 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
   };
 
   const checkIfTimeIsAvailable = (timeSlot) => {
-    const isAvailable = patientsByDate.find(
+    const isAvailable = patientsByDate?.find(
       (time) => time.avaliable_time == timeSlot
     );
     return isAvailable;
@@ -65,7 +65,7 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
         />
       </div>
       <div className="flex justify-center">
-        <div className="flex w-full gap-4 items-center justify-between flex-wrap mt-10 mb-24">
+        <div className="flex w-full gap-4 items-center justify-between flex-wrap mt-10 mb-4">
           {daysOfWeek.map((timeSlot) => (
             <CustomButton
               key={timeSlot.id}
@@ -92,6 +92,12 @@ function AvailableTime({ selectedDay, setTimeId, formatDate }) {
             />
           ))}
         </div>
+      </div>
+      <div className="flex justify-center items-center mb-10">
+
+        {timeError && (
+          <p className="text-red-500 mt-2 text-xl">Please select a time.</p>
+        )}
       </div>
     </div>
   );
