@@ -44,7 +44,7 @@ function BookingStructure() {
   };
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit} className="mb-20">
       <BookingTop />
       <div className="px-8 sm:px-12 md:px-16">
         <ServicesForPatients />

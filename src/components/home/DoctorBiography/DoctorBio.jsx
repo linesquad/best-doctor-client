@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import DoctorBioContent from "./DoctorBioContent";
 import DoctorBioSkeleton from "./DoctorBioSkeleton";
 import useGetDoctorBio from "../../../hooks/useGetDoctorBio";
