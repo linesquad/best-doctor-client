@@ -1,7 +1,7 @@
 import ReusableTitle from "../../ui/ReusableTitle";
 import PersonalForm from "./PersonalForm";
 
-function ServicesForPatients() {
+function ServicesForPatients({formErrors}) {
   return (
     <div className="mt-[10.19rem]">
       <ReusableTitle
@@ -10,7 +10,7 @@ function ServicesForPatients() {
         color={"text-black"}
         fontWeight={"font-bold"}
       />
-      <PersonalForm  />
+      <PersonalForm formErrors={formErrors}/>
     </div>
   );
 }

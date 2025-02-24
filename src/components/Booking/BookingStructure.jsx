@@ -15,23 +15,42 @@ function BookingStructure() {
   const [formatDate, setFormatDate] = useState(null);
   const [timeError, setTimeError] = useState(false);
   const [servicesError, setServicesError] = useState(false);
+  const [formErrors, setFormErrors] = useState({}); 
 
   const formRef = useRef(null);
   const { mutate: addPatient } = useAddPatient();
 
   const dayIndex = (date.getDay() + 7) % 7;
 
+  const validateForm = () => {
+    const form = formRef.current;
+    const errors = {};
+
+    if (!form.user_name.value) errors.user_name = 'Name is required';
+    if (!form.user_email.value) errors.user_email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(form.user_email.value)) errors.user_email = 'Email is invalid';
+    if (!form.user_phone.value) errors.user_phone = 'Phone is required';
+    else if (!/^\d{9}$/.test(form.user_phone.value)) errors.user_phone = 'Phone must be 9 digits';
+    if (!form.age.value) errors.age = 'Age is required';
+    else if (isNaN(form.age.value) || form.age.value < 1 || form.age.value > 120) errors.age = 'Age must be between 1 and 120';
+    if (!form.condition.value) errors.condition = 'Condition is required';
+
+    setFormErrors(errors); 
+    return Object.keys(errors).length === 0;
+  };
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    const form = formRef.current;
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-  
+
     let isValid = true;
-  
+    const isFormValid = validateForm();
+    
+    if (!isFormValid) {
+      toast.error("Please fix the errors in the form.");
+      isValid = false
+    }
+
     if (!timeId) {
       setTimeError(true);
       toast.error("Please select a time.");
@@ -39,7 +58,7 @@ function BookingStructure() {
     } else {
       setTimeError(false);
     }
-  
+
     if (!selectedService?.name) {
       setServicesError(true);
       toast.error("Please select a service.");
@@ -47,13 +66,12 @@ function BookingStructure() {
     } else {
       setServicesError(false);
     }
-  
+
     if (!isValid) return;
-  
-    const formData = new FormData(form);
-  
+
+    const formData = new FormData(formRef.current);
     const formattedDate = date.toISOString().split("T")[0];
-  
+
     const patient = {
       user_name: formData.get("user_name"),
       user_email: formData.get("user_email"),
@@ -66,19 +84,19 @@ function BookingStructure() {
       procedure: selectedService?.name,
       avaliable_time: timeId,
     };
-  
+
     addPatient(patient);
-    form.reset();
+    formRef.current.reset();
     setDate(new Date());
     setSelectedService(null);
+    setFormErrors({}); 
   };
-  
 
   return (
     <form ref={formRef} onSubmit={handleSubmit} className="mb-20">
       <BookingTop />
       <div className="px-8 sm:px-12 md:px-16">
-        <ServicesForPatients />
+        <ServicesForPatients formErrors={formErrors}/>
         <div className="flex lg:flex-row flex-col gap-10 lg:gap-6 justify-between my-16">
           <BookingCalendar
             date={date}
