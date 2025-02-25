@@ -20,3 +20,9 @@ export async function apiGetAboutMeExperience() {
     throw err;
   }
 }
+
+export const getEducation = async () => {
+  const { data, error } = await supabase.from("education").select("*");
+  if (error) throw new Error(error.message);
+  return { data, error };
+};
