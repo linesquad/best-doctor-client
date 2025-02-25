@@ -16,6 +16,7 @@ import SingleServicesContent from "./pages/SingleServicesContent";
 import Skills from "./pages/Skills";
 import MainLayout from "./components/MainLayout";
 import Booking from "./pages/Booking";
+import { HelmetProvider } from 'react-helmet-async';
 
 const routes = [
   {
@@ -42,6 +43,7 @@ const routes = [
 
 function App() {
   return (
+    <HelmetProvider>
     <Router>
       <Routes>
         {routes.map((route, index) => (
@@ -53,6 +55,7 @@ function App() {
         ))}
       </Routes>
     </Router>
+    </HelmetProvider>
   );
 }
 
