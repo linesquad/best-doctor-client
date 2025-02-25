@@ -13,6 +13,7 @@ import SingleServicesContent from "./pages/SingleServicesContent";
 import MainLayout from "./components/MainLayout";
 import Trend from "./pages/Trend";
 import SingleBooking from "./components/booking/bookingServiceCard/SingleBooking";
+import Booking from "./pages/Booking";
 import { HelmetProvider } from 'react-helmet-async';
 
 const routes = [
@@ -31,6 +32,7 @@ const routes = [
       { path: "service/:id", element: <SingleServicesContent /> },
       { path: "booking/detailed/:id", element: <SingleBooking /> },
       { path: "trend", element: <Trend /> },
+      { path: "booking", element: <Booking /> },
     ],
   },
 ];

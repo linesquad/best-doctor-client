@@ -1,4 +1,4 @@
-import React from "react";
+
 import MainContentWrapper from "./MainContentWrapper";
 import Header from "./Header/Header";
 import Footer from "./footer/Footer";

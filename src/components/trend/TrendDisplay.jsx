@@ -27,7 +27,7 @@ function TrendDisplay() {
       : data.filter((item) => item.date === selectedDate);
 
   return (
-    <div className="">
+    <div className="px-10">
       <ReusableTitle
         color={"text-[#000]"}
         fontWeight={"font-poppinsBold"}
