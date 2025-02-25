@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import SingleBlogContent from "./pages/SingleBlogContent";
 import SingleServicesContent from "./pages/SingleServicesContent";
 import MainLayout from "./components/MainLayout";
+import Trend from "./pages/Trend";
+import SingleBooking from "./components/booking/bookingServiceCard/SingleBooking";
 
 const routes = [
   {
@@ -26,6 +28,8 @@ const routes = [
       { path: "blog", element: <Blog /> },
       { path: "blog/:id", element: <SingleBlogContent /> },
       { path: "service/:id", element: <SingleServicesContent /> },
+      { path: "booking/detailed/:id", element: <SingleBooking /> },
+      { path: "trend", element: <Trend /> },
     ],
   },
 ];
