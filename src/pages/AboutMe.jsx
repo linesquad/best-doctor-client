@@ -1,6 +1,7 @@
 import AboutMeHero from "../components/AboutMe/hero/AboutMeHero";
 import AboutMeExperience from "../components/AboutMe/Experience/AboutMeExperience";
 import AboutMeEducation from "../components/AboutMe/Education/AboutMeEducation";
+import SkillsStructure from "../components/AboutMe/skill/SkillsStructure";
 function AboutMe() {
   return (
     <div className="px-10">
@@ -18,8 +19,8 @@ function AboutMe() {
         </div>
       </div>
       <div>
-        {/* <SkillsStructure />
-        <AwardsStructure /> */}
+        <SkillsStructure />
+        {/* <AwardsStructure /> */}
       </div>
     </div>
   );
