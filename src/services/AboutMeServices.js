@@ -32,3 +32,10 @@ export const getSkills = async () => {
   if (error) throw new Error(error.message);
   return { skill: data, error };
 };
+
+
+export const getAwards = async () => {
+  const { data, error } = await supabase.from("awards").select("*");
+  if (error) throw new Error(error.message);
+  return { award: data, error };
+};
