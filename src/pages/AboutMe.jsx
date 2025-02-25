@@ -1,9 +1,27 @@
-
+import AboutMeHero from "../components/AboutMe/hero/AboutMeHero";
 
 function AboutMe() {
   return (
-    <div>AboutMe</div>
-  )
+    <div className="px-10">
+      <div className="block">
+        <div>
+          <div>
+            <AboutMeHero />
+          </div>
+          <div>
+            {/* <AboutMeExperience /> */}
+          </div>
+          <div>
+            {/* <AboutMeEducation /> */}
+          </div>
+        </div>
+      </div>
+      <div>
+        {/* <SkillsStructure />
+        <AwardsStructure /> */}
+      </div>
+    </div>
+  );
 }
 
-export default AboutMe
+export default AboutMe;
