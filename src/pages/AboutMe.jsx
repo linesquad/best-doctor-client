@@ -1,5 +1,5 @@
 import AboutMeHero from "../components/AboutMe/hero/AboutMeHero";
-
+import AboutMeExperience from "../components/AboutMe/Experience/AboutMeExperience";
 function AboutMe() {
   return (
     <div className="px-10">
@@ -9,7 +9,7 @@ function AboutMe() {
             <AboutMeHero />
           </div>
           <div>
-            {/* <AboutMeExperience /> */}
+            <AboutMeExperience />
           </div>
           <div>
             {/* <AboutMeEducation /> */}
