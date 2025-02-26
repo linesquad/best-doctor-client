@@ -1,5 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../../../ui/CustomButton";
+
 function HeroContent({ mainHeading, subHeading }) {
+  const navigation = useNavigate();
+
+  const handleBookAppointmentClick = () => {
+    navigation("/booking"); 
+  };
+
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <h1
@@ -12,6 +20,7 @@ function HeroContent({ mainHeading, subHeading }) {
         {subHeading}
       </h3>
       <CustomButton
+        onClick={handleBookAppointmentClick}
         name={"BOOK APPOINTMENT"}
         color={"text-white"}
         bg={"bg-[#004682]"}
