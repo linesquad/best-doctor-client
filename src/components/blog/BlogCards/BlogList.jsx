@@ -6,7 +6,7 @@ import useBlogPagination from "../../../hooks/useBlogPagination";
 import HomeCarousel from "../../home/Carousel/HomeCarousel";
 
 function BlogList({ dataList }) {
-  const itemsPerPage = 5;
+  const itemsPerPage = 3;
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page")) || 1;
