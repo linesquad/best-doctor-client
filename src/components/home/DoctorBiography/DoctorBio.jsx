@@ -1,7 +1,7 @@
 import DoctorBioContent from "./DoctorBioContent";
 import DoctorBioSkeleton from "./DoctorBioSkeleton";
 import useGetDoctorBio from "../../../hooks/useGetDoctorBIo";
-import useGetDoctorBioImage from "../../../hooks/useGetDoctorBioImage";
+import useGetDoctorBioImage from "../../../hooks/useGetDoctorBioIMage";
 import ErrorDisplay from "../../ErrorDisplay";
 
 function DoctorBio() {
